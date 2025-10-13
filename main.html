@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ВТТКР 1 - Телеканал</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Подключение стилей Plyr -->
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <style>
         * {
@@ -378,13 +377,15 @@
                     <div class="player-title">Вести в 20:00</div>
                     
                     <div class="player-container">
-                        <!-- Видеоплеер Plyr -->
-                        <video id="player" playsinline controls data-poster="https://i.postimg.cc/C1T338p1/photo-2025-10-09-18-28-08.jpg">
-                            <!-- Замените src на URL вашего видео -->
-                            <source src="https://stream.mux.com/cyIMfY97004dbeBXZ1qBjgrQ9zZMV0100802eB9KwU02v00jY.m3u8" type="video/mp4" />
-                            <!-- Дополнительные источники для совместимости -->
-                            <source src="https://example.com/video.webm" type="video/mp4" />
-                        </video>
+                        <!-- YouTube плеер с Plyr -->
+                        <div class="plyr__video-embed" id="player">
+                            <iframe
+                                src="https://www.youtube.com/embed/vZS7w-8I-xw?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+                                allowfullscreen
+                                allowtransparency
+                                allow="autoplay"
+                            ></iframe>
+                        </div>
                     </div>
                     
                     <div class="broadcast-info">
@@ -411,10 +412,8 @@
         </div>
     </div>
 
-    <!-- Подключение скрипта Plyr -->
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script>
-        // Инициализация Plyr
         const player = new Plyr('#player', {
             controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
             ratio: '16:9',
