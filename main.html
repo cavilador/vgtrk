@@ -43,6 +43,63 @@
             }
         }
         
+        /* Стили для топбара */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideIn 0.6s ease-out 0.2s both;
+        }
+        
+        .topbar-left, .topbar-right {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .topbar-right {
+            justify-content: flex-end;
+        }
+        
+        .topbar-center {
+            flex: 0 0 auto;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
         .header {
             display: flex;
             justify-content: space-between;
@@ -112,7 +169,7 @@
             animation: textReveal 1s ease-out 0.9s forwards;
         }
         
-        .logo {
+        .logo-text {
             font-size: 60px;
             font-weight: 700;
             color: #fff;
@@ -331,7 +388,7 @@
                 font-size: 32px;
             }
             
-            .logo {
+            .logo-text {
                 font-size: 48px;
             }
             
@@ -339,15 +396,42 @@
                 transform: none;
                 animation: fadeIn 0.8s ease-out 1.5s forwards;
             }
+            
+            .topbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .topbar-left, .topbar-right {
+                justify-content: center;
+            }
+            
+            .logo {
+                height: 40px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="lang-switch">RUS / ENG</div>
+        <div class="topbar">
+            <div class="topbar-left">
+                <a href="#about" class="nav-btn">Информация о проекте</a>
+                <a href="#news" class="nav-btn">Вести</a>
+            </div>
+            
+            <div class="topbar-center">
+                <a href="#home">
+                    <img src="karti/111.png" alt="Логотип ВТТКР" class="logo">
+                </a>
+            </div>
+            
+            <div class="topbar-right">
+                <a href="#staff" class="nav-btn">Сотрудники</a>
+                <a href="#live" class="nav-btn">Прямой эфир</a>
+            </div>
         </div>
-        
+
         <div class="main-title">
             <div class="telecompany">ТЕЛЕКОМПАНИЯ ВТТКР</div>
         </div>
@@ -377,7 +461,6 @@
                     <div class="player-title">Вести в 20:00</div>
                     
                     <div class="player-container">
-                        <!-- YouTube плеер с Plyr -->
                         <div class="plyr__video-embed" id="player">
                             <iframe
                                 src="https://www.youtube.com/embed/vZS7w-8I-xw?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
