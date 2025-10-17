@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О проекте - ВТТКР 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="karti/logo.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #1a3a6c 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Стили для топбара */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideIn 0.6s ease-out 0.2s both;
+        }
+        
+        .topbar-left, .topbar-right {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .topbar-right {
+            justify-content: flex-end;
+        }
+        
+        .topbar-center {
+            flex: 0 0 auto;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideIn 0.6s ease-out 0.3s both;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .lang-switch {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .main-title {
+            text-align: center;
+            padding: 40px 30px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.8s ease-out 0.5s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: textReveal 1s ease-out 0.7s forwards;
+        }
+        
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: textReveal 1s ease-out 0.9s forwards;
+        }
+        
+        .about-section {
+            padding: 40px 30px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 1.1s forwards;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .info-card:nth-child(1) { animation-delay: 1.3s; }
+        .info-card:nth-child(2) { animation-delay: 1.5s; }
+        .info-card:nth-child(3) { animation-delay: 1.7s; }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+        
+        .info-card-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card-title i {
+            font-size: 24px;
+        }
+        
+        .info-card-content {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+        
+        .stats-section {
+            padding: 40px 30px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 1.9s forwards;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .mission-section {
+            padding: 40px 30px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 2.1s forwards;
+        }
+        
+        .mission-content {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        .mission-text {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 2.3s forwards;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .social-btn img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .topbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .topbar-left, .topbar-right {
+                justify-content: center;
+            }
+            
+            .logo {
+                height: 40px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Топбар -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <a href="index.html" class="nav-btn">Информация о проекте</a>
+                <a href="vesti.html" class="nav-btn">Вести</a>
+            </div>
+            
+            <div class="topbar-center">
+                <a href="index.html">
+                    <img src="karti/111.png" alt="Логотип ВТТКР" class="logo">
+                </a>
+            </div>
+            
+            <div class="topbar-right">
+                <a href="staff.html" class="nav-btn">Сотрудники</a>
+                <a href="live.html" class="nav-btn">Прямой эфир</a>
+            </div>
+        </div>
+        
+        
+        <div class="main-title">
+            <div class="section-title">О проекте</div>
+            <div class="section-subtitle">Телеканал ВТТКР - больше, чем ро-новости</div>
+        </div>
+        
+        <div class="about-section">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3 class="info-card-title">📺 О канале</h3>
+                    <div class="info-card-content">
+                        <p>ВТТКР - Телеканал о торговой и транспортной индустрии в мире и roblox.  Основан в первой половине 2023 года. До 2024 года вел вещание на просторе  транспорта роблокса и РФ, позже, ушел в заморозку до июня 2025 года. </p>
+                        <p>Далее продолжил вещание, но теперь еще в роблокс-бизнесе и российском ритейле.</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3 class="info-card-title">🌟 Программы</h3>
+                    <div class="info-card-content">
+                        <p><strong>"Вести"</strong> - информационо-аналитическая программа, которая расскажет вам о последних новостях ро-бизнеса, ро-транспорта, а также о самых громких транспортных новостях мира и России.</p>
+                        <p><strong>"60 минут"</strong> - аналитическое ток-шоу, где разбираются о самых интересующих темах на данный момент</p>
+                        <p><strong>"Интервью"</strong> - беседы с ведущими специалистами в ро-бизнесе</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Статистика -->
+        <div class="stats-section">
+            <h2 class="section-title">Мы в цифрах</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Года работы</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">180</div>
+                    <div class="stat-label">Минут отснятого материала</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Ведущих</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Подписчиков в Telegram</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mission-section">
+            <h2 class="section-title">Заявки на работу</h2>
+            <div class="mission-content">
+                <p class="mission-text">
+                    Здесь скоро будет информация....... 
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Телеканал "ВТТКР 1". Все права защищены.</p>
+            <div class="social-links">
+                <a href="https://t.me/vttkr" target="_blank" class="social-btn">
+                    <img src="karti/telegram.png" alt="Telegram">
+                </a>
+                <a href="https://www.youtube.com/@vttkr" target="_blank" class="social-btn">
+                    <img src="karti/youtube.png" alt="YouTube">
+                </a>
+                <a href="https://vk.com/gtrk_vttkr" target="_blank" class="social-btn">
+                    <img src="karti/vk.png" alt="ВКонтакте">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
